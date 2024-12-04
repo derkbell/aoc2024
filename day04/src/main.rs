@@ -4,6 +4,7 @@ struct Grid {
     grid: Vec<Vec<char>>,
     row_size: usize,
     col_size: usize,
+    padding: usize,
 }
 
 impl Grid {
@@ -74,8 +75,8 @@ impl Grid {
         F: Fn(usize, usize) -> usize,
     {
         let mut count = 0;
-        for row in 3..self.row_size - 3 {
-            for col in 3..self.col_size - 3 {
+        for row in self.padding..self.row_size - self.padding {
+            for col in self.padding..self.col_size - self.padding {
                 count += f(row, col);
             }
         }
@@ -122,6 +123,7 @@ impl From<String> for Grid {
             grid,
             row_size,
             col_size,
+            padding,
         }
     }
 }
