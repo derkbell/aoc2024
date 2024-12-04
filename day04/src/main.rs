@@ -93,7 +93,8 @@ impl Grid {
     }
 }
 
-// Convert the input into a grid with padding.
+// Convert the input into a grid with padding. This is another nice feature of rust, the From trait. Together with the
+// Into trait we can define all kinds of conversions between our own types and std types.
 impl From<String> for Grid {
     fn from(input: String) -> Self {
         let padding = 3;
@@ -130,6 +131,9 @@ impl From<String> for Grid {
 
 fn main() -> std::io::Result<()> {
     let input = read_to_string("input")?;
+
+    // Here the From trait is used to convert the input into a grid. Rust will infer the type of the input variable
+    // (String) and therefore use the From<String> implementation for Grid.
     let grid = Grid::from(input);
 
     println!("Part A: {}", grid.count_xmas());
